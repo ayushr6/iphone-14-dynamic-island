@@ -24,3 +24,57 @@
     --c-s: 100%;
     --c-l: 50%;
 }
+
+@-webkit-keyframes appear{
+    to{
+        transform: scale3d(1, 1, 1);
+        opacity: 1;
+    }
+}
+
+@keyframes appear{
+    to{
+        transform: scale3d(1, 1, 1);
+        opacity: 1;
+    }
+}
+
+body{
+    background: #00000a;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Inter';
+    font-size: var(--size);
+}
+
+.phone{
+    position: relative;
+    z-index: 1;
+    aspect-ratio: 37/76;
+    background-color: black;
+    height: var(--height);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 0.1em 0.25em hsl(var(--c-h), 20%, 25%), 0 0 0 var(--border-width) hsl(var(--c-h), 30%, 85%);
+    box-sizing: border-box;
+    opacity: 0;
+    transform: scale3d(1.1, 1.1, 1);
+    -webkit-animation: appear 1s var(--ease-out) forwards;
+    animation: appear 1s var(--ease-out) forwards;
+    --webkit-backface-visibility: hidden;
+}
+
+.phone::before{
+    content: "";
+    position: absolute;
+    top: var(--border-radius);
+    right: calc(var(--border-width) * -1);
+    bottom: calc(var(--border-radius));
+    left: calc(var(--border-width) * -1);
+    border: 0.5em solid hsl(var(--c-h), 20%, 30%);
+    border-left-width: 0;
+    border-right-width: 0;
+}
